@@ -34,13 +34,16 @@ db.on("error", (err) => {
 app.use(bodyParser.urlencoded({ extended: true })); //allow body-parser
 //imported routes
 const Register = require("./routes/register");
+const Login = require("./routes/login");
 
 app.get("/", (req, res) => {
   res.send("App running");
 });
 
-//use routes
+//api use routes
 app.use("/api/register", Register);
-app.listen(hostname, port, () => {
+app.use("/api/login", Login);
+
+app.listen(port, () => {
   console.log(`app running on ${port}`);
 });
