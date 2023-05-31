@@ -41,6 +41,6 @@ app.get("/", (req, res) => {
 
 //use routes
 app.use("/api/register", Register);
-app.listen(port, () => {
+app.listen(hostname, port, () => {
   console.log(`app running on ${port}`);
 });
