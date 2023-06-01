@@ -6,11 +6,30 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const request = new Request(req.body);
-  await request
-    .save()
-    .then(() => {
-      res.json({ message: "Your request has been submited", success: true });
+  await Request.findOne({
+    $and: [{ user_id: req.body.user_id }, { pending: true }],
+  })
+    .then(async (pending) => {
+      if (pending) {
+        res.json({
+          message:
+            "You have a pending pick up request, can't make another request!",
+          success: false,
+        });
+      } else {
+        const request = new Request(req.body);
+        await request
+          .save()
+          .then(() => {
+            res.json({
+              message: "Your request has been submited",
+              success: true,
+            });
+          })
+          .catch((err) => {
+            res.json({ message: "Uknown error occured!", success: false });
+          });
+      }
     })
     .catch((err) => {
       res.json({ message: "Uknown error occured!", success: false });

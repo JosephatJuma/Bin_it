@@ -5,6 +5,8 @@ const PickUpRequest = new mongoose.Schema({
   location: { type: Object },
   categories: { type: Array },
   quantity: { type: Number },
+  confirmed: { type: Boolean, default: false },
+  pending: { type: Boolean, default: true },
 });
 
 module.exports = mongoose.model("pickup_requests", PickUpRequest);
