@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
-router.get("/account", (req, res) => {
+router.get("/", (req, res) => {
   res.send("Register Route");
 });
 
@@ -12,16 +12,22 @@ router.post("/", async (req, res) => {
     $or: [{ email: req.body.email }, { phone_number: req.body.phone_number }],
   }).then(async (user_exits) => {
     if (user_exits) {
-      res.json({
-        message: "User with email or phone number given already exists!",
-        success: false,
-      });
+      if (user_exits.email == req.body.email) {
+        res.json({
+          message: "User email is already registered!",
+          success: false,
+        });
+      } else {
+        res.json({
+          message: "User phone number is already registered!",
+          success: false,
+        });
+      }
     } else {
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(req.body.password, salt);
       const user_data = req.body;
       user_data.password = hashPassword;
-      user_data.verified = false;
       const user = new User(user_data);
       user
         .save()
