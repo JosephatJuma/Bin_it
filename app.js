@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true })); //allow body-parser
 //imported routes
 const Register = require("./routes/register");
 const Login = require("./routes/login");
+const PickUpRequest = require("./routes/pickUpRequest");
 
 app.get("/", (req, res) => {
   res.send("App running");
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
 //api use routes
 app.use("/api/register", Register);
 app.use("/api/login", Login);
+app.use("/api/pickuprequest", PickUpRequest);
 
 app.listen(port, () => {
   console.log(`app running on ${port}`);
