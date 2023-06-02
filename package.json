@@ -2,7 +2,7 @@
   "name": "bin_it",
   "version": "1.0.0",
   "description": "\"backend for Toyiwa app\"",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,5 +17,15 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.2.2",
     "nodemon": "^2.0.22"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosephatJuma/Bin_it.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JosephatJuma/Bin_it/issues"
+  },
+  "homepage": "https://github.com/JosephatJuma/Bin_it#readme"
 }
