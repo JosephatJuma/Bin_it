@@ -36,4 +36,15 @@ router.post("/", async (req, res) => {
     });
 });
 
+//Fetch user Requests
+router.get("/:id", async (req, res) => {
+  await Request.find({ user_id: req.params.id })
+    .then((requests) => {
+      res.json(requests);
+    })
+    .catch((err) => {
+      res.json({ message: "Unknown error occured!", success: false });
+    });
+});
+
 module.exports = router;
