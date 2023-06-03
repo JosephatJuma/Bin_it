@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 
-const PickUpRequest = new mongoose.Schema({
-  user_id: { type: String },
+const Schedule = new mongoose.Schema({
   location: { type: Object },
+  user_id: { type: String },
+  schedule_date: { type: Date },
   categories: { type: Array },
   quantity: { type: Number },
   date: { type: Date, default: new Date() },
@@ -10,4 +11,4 @@ const PickUpRequest = new mongoose.Schema({
   pending: { type: Boolean, default: true },
 });
 
-module.exports = mongoose.model("pickup_requests", PickUpRequest);
+module.exports = mongoose.model("schedule", Schedule);

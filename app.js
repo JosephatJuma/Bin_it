@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const config = require("./config");
 const session = require("express-session");
 const cors = require("cors");
-const hostname = "0.0.0.0";
 const port = 3000;
 app.use(express.json());
 app.use(cors());
@@ -31,11 +30,14 @@ try {
 db.on("error", (err) => {
   console.log(console.log(err));
 });
+
 app.use(bodyParser.urlencoded({ extended: true })); //allow body-parser
+
 //imported routes
 const Register = require("./routes/register");
 const Login = require("./routes/login");
 const PickUpRequest = require("./routes/pickUpRequest");
+const Schedule = require("./routes/schedule");
 
 app.get("/", (req, res) => {
   res.send("App running");
@@ -45,6 +47,7 @@ app.get("/", (req, res) => {
 app.use("/api/register", Register);
 app.use("/api/login", Login);
 app.use("/api/pickuprequest", PickUpRequest);
+app.use("/api/schedule", Schedule);
 
 app.listen(port, () => {
   console.log(`app running on ${port}`);
